@@ -43,7 +43,11 @@
                     class="password-input"
                     placeholder="كلمة المرور"
                     maxlength="8"
-                    [(ngModel)]="password"
+                    [(ngModel)]="passwordDigits[0]" 
+                    (input)="onDigitInput($event, 0)" 
+                    (keydown)="onDigitKeydown($event, 0)"
+                    (paste)="onDigitPaste($event, 0)"
+                    (focus)="onDigitFocus($event)"
                 >
             </div>
         </div>
