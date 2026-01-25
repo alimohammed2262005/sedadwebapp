@@ -43,7 +43,6 @@ body, :host {
     flex-direction: column;
     align-items: center;
 }
-
 .input-group {
     position: relative;
     width: 100%;
@@ -54,32 +53,28 @@ body, :host {
 
 .phone-input {
     width: 100%;
-    height: 48px; /* تحديد طول ثابت بيساعد في ضبط الراديوس */
-    padding: 0 45px 0 15px;
-    
+    height: 48px;
+    padding-inline-start: 15px;
+    padding-inline-end: 45px;
     border: 1.5px solid #8f8e8e;
     border-radius: 12px;
-    
     font-size: 15px;
     text-align: right;
     outline: none;
     background: #fff;
-    
-    /* منع المتصفح من تغيير شكل الحواف */
+    box-sizing: border-box;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    
-    box-sizing: border-box;
 }
 
 .input-icon {
     position: absolute;
-    right: 15px;
-    /* التأكد من أن الأيقونة لا تضغط على حواف الحقل */
+    inset-inline-end: 15px;
     pointer-events: none;
     z-index: 5;
 }
+
 .phone-input::placeholder {
     color: #a0a0a0;
 }
