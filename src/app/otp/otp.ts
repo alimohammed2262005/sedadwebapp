@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChildren, QueryList, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -12,26 +12,22 @@ import { OTP as OTPInterface } from '../Interfaces/otp';
   templateUrl: './otp.html',
   styleUrls: ['./otp.css'],
 })
-export class OTP implements OnInit, OnDestroy {
+export class OTP implements OnInit, OnDestroy, AfterViewInit {
+  @ViewChildren('otpInput') otpInputs!: QueryList<ElementRef<HTMLInputElement>>;
+  otp: string[] = ['', '', '', '', '', ''];
   totalTime = 300;
   timeLeft = 300;
   timerText = '05:00';
-  progressOffset = 0;
+  progressOffset = 408.41;
   circumference = 408.41;
-  otp: string[] = ['', '', '', '', '', ''];
+  strokeColor = '#1a3a52';
   timerInterval: any;
   expired = false;
   phoneNumber: string | null = null;
   isLoading: boolean = false;
   errorMessage: string = '';
 
-  @ViewChildren('otpInput') otpInputs!: QueryList<ElementRef<HTMLInputElement>>;
-
-  constructor(
-    private router: Router, 
-    private route: ActivatedRoute,
-    private loginService: LoginService
-  ) {}
+  constructor(private router: Router, private route: ActivatedRoute, private loginService: LoginService) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -40,8 +36,12 @@ export class OTP implements OnInit, OnDestroy {
         this.router.navigate(['/login']);
         return;
       }
-      this.startTimer();
+      setTimeout(() => this.startTimer(), 100);
     });
+  }
+
+  ngAfterViewInit() {
+    setTimeout(() => this.otpInputs.first?.nativeElement.focus(), 200);
   }
 
   ngOnDestroy() {
@@ -64,55 +64,36 @@ export class OTP implements OnInit, OnDestroy {
   }
 
   updateProgress() {
-    const timeElapsed = this.totalTime - this.timeLeft;
-    this.progressOffset = this.circumference - (timeElapsed / this.totalTime) * this.circumference;
-    
-    const progressCircle = document.querySelector('.progress-ring .progress') as SVGCircleElement;
-    if (progressCircle) {
-      progressCircle.style.strokeDashoffset = this.progressOffset.toString();
-      
-      const percentage = (this.timeLeft / this.totalTime) * 100;
-      if (percentage > 50) {
-        progressCircle.style.stroke = '#d4af37';
-      } else if (percentage > 25) {
-        progressCircle.style.stroke = '#f4c430';
-      } else {
-        progressCircle.style.stroke = '#ff6b6b';
-      }
-    }
+    const elapsed = this.totalTime - this.timeLeft;
+    this.progressOffset = this.circumference - (elapsed / this.totalTime) * this.circumference;
+    this.strokeColor = '#1a3a52';
   }
 
   onInput(event: any, index: number) {
     const input = event.target as HTMLInputElement;
     let value = input.value.replace(/[^0-9]/g, '');
-    
-    if (value.length > 1) {
-      value = value.charAt(value.length - 1);
-    }
-    
-    if (this.otp[index] === value) {
-      return;
-    }
-    
-    this.otp[index] = value;
-    input.value = value;
-
-    if (value && index < 5) {
-      setTimeout(() => {
-        const next = this.otpInputs.toArray()[index + 1]?.nativeElement;
-        if (next) {
-          next.focus();
-          next.select();
+    if (value.length > 0) {
+      value = value.slice(-1);
+      this.otp[index] = value;
+      input.value = value;
+      if (index < 5) {
+        const nextInput = this.otpInputs.toArray()[index + 1]?.nativeElement;
+        if (nextInput) {
+          nextInput.focus();
+          nextInput.select();
         }
-      }, 10);
+      }
+    } else {
+      this.otp[index] = '';
+      input.value = '';
     }
   }
 
   onKeyDown(event: KeyboardEvent, index: number) {
     const input = event.target as HTMLInputElement;
-
     if (event.key === 'Backspace') {
-      if (this.otp[index]) {
+      event.preventDefault();
+      if (input.value) {
         this.otp[index] = '';
         input.value = '';
       } else if (index > 0) {
@@ -121,25 +102,47 @@ export class OTP implements OnInit, OnDestroy {
           this.otp[index - 1] = '';
           prev.value = '';
           prev.focus();
+          prev.select();
         }
       }
-      event.preventDefault();
     }
+    if (event.key === 'ArrowRight' && index < 5) {
+      event.preventDefault();
+      this.otpInputs.toArray()[index + 1]?.nativeElement.focus();
+    }
+    if (event.key === 'ArrowLeft' && index > 0) {
+      event.preventDefault();
+      this.otpInputs.toArray()[index - 1]?.nativeElement.focus();
+    }
+    if (event.key.length === 1 && !/[0-9]/.test(event.key)) event.preventDefault();
   }
 
   onPaste(event: ClipboardEvent, index: number) {
     event.preventDefault();
-    const pasteData = event.clipboardData?.getData('text').replace(/[^0-9]/g, '').slice(0, 6) || '';
-    
-    for (let i = 0; i < pasteData.length && (index + i) < 6; i++) {
-      this.otp[index + i] = pasteData[i];
-      const input = this.otpInputs.toArray()[index + i]?.nativeElement;
-      if (input) input.value = pasteData[i];
-    }
+    const data = event.clipboardData?.getData('text') || '';
+    const digits = data.replace(/[^0-9]/g, '').split('');
+    digits.forEach((d, i) => {
+      const currentIndex = index + i;
+      if (currentIndex < 6) {
+        this.otp[currentIndex] = d;
+        const input = this.otpInputs.toArray()[currentIndex]?.nativeElement;
+        if (input) input.value = d;
+      }
+    });
+    const nextIndex = Math.min(index + digits.length, 5);
+    this.otpInputs.toArray()[nextIndex]?.nativeElement.focus();
+  }
 
-    const nextIndex = Math.min(index + pasteData.length, 5);
-    const nextInput = this.otpInputs.toArray()[nextIndex]?.nativeElement;
-    if (nextInput) nextInput.focus();
+  trackByIndex(index: number): number {
+    return index;
+  }
+
+  onDigitFocus(event: FocusEvent): void {
+    (event.target as HTMLInputElement).select();
+  }
+
+  isFilled(index: number) {
+    return this.otp[index] !== '';
   }
 
   async submit() {
@@ -148,20 +151,12 @@ export class OTP implements OnInit, OnDestroy {
       this.errorMessage = 'من فضلك أدخل الكود كاملاً';
       return;
     }
-
     this.isLoading = true;
     this.errorMessage = '';
-
-    const payload: OTPInterface = { 
-      phoneNumber: this.phoneNumber!, 
-      otp: code 
-    };
-
+    const payload: OTPInterface = { phoneNumber: this.phoneNumber!, otp: code };
     try {
-      const response = await this.loginService.OTP(payload).toPromise();
-      if (response) {
-        localStorage.setItem('authToken', response);
-      }
+      const response: any = await this.loginService.OTP(payload).toPromise();
+      if (response) localStorage.setItem('authToken', response);
       this.router.navigate(['/home']);
     } catch (error: any) {
       this.errorMessage = error?.error?.message || error?.message || 'كود OTP غير صحيح';
@@ -171,33 +166,7 @@ export class OTP implements OnInit, OnDestroy {
   }
 
   resend() {
-    clearInterval(this.timerInterval);
-    this.timeLeft = this.totalTime;
-    this.expired = false;
-    this.otp = ['', '', '', '', '', ''];
-    this.progressOffset = 0;
-    this.timerText = '05:00';
-    this.errorMessage = '';
-
-    const progressCircle = document.querySelector('.progress-ring .progress') as SVGCircleElement;
-    if (progressCircle) {
-      progressCircle.style.stroke = '#d3d3d3';
-      progressCircle.style.strokeDashoffset = '0';
-    }
-
-    this.otpInputs.forEach(input => {
-      input.nativeElement.value = '';
-    });
-
-    setTimeout(() => {
-      this.otpInputs.first.nativeElement.focus();
-    }, 100);
-
-    this.startTimer();
-  }
-
-  isFilled(index: number) {
-    return this.otp[index] !== '';
+    window.location.reload();
   }
 
   goToLogin() {
