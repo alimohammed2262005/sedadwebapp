@@ -15,12 +15,15 @@
                 stroke="#B8974A" stroke-width="2" stroke-linecap="round"/>
         </svg>
 
-        <input 
-            type="tel"
-            class="phone-input"
-            placeholder="رقم الهاتف"
-              maxlength="8"
-        >
+<input 
+    type="tel"
+    class="phone-input"
+    placeholder="رقم الهاتف"
+    maxlength="8"
+    [(ngModel)]="phoneNumber"
+    (input)="onPhoneInput($event)"
+>
+
     </div>
 </div>
 
