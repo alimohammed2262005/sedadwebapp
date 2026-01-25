@@ -9,10 +9,12 @@
   font-family: 'Inter', sans-serif;
 }
 
-.users-table th, .users-table td {
+.users-table th,
+.users-table td {
   padding: 12px 15px;
   text-align: center;
   border-bottom: 1px solid #e0e0e0;
+  font-size: 15px;
 }
 
 .users-table th {
@@ -36,9 +38,11 @@
 }
 
 .users-table td ul li {
-  font-size: 13px;
+  font-size: inherit;
+  font-weight: 500;
   color: #555;
 }
+
 .empty-cart {
   position: fixed;
   top: 50%;
