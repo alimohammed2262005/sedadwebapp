@@ -7,25 +7,25 @@
         <div *ngIf="successMessage" class="message success">{{ successMessage }}</div>
         <div *ngIf="errorMessage" class="message error">{{ errorMessage }}</div>
 <div class="input-group">
-    <svg class="input-icon" width="22" height="22" viewBox="0 0 24 24" fill="none"
-        xmlns="http://www.w3.org/2000/svg">
-        <circle cx="12" cy="8" r="4" stroke="#B8974A" stroke-width="2"/>
-        <path d="M6 21C6 17.134 8.686 14 12 14C15.314 14 18 17.134 18 21"
-            stroke="#B8974A" stroke-width="2" stroke-linecap="round"/>
-    </svg>
+    <div class="input-wrapper">
+        <svg class="input-icon" width="22" height="22" viewBox="0 0 24 24" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="8" r="4" stroke="#B8974A" stroke-width="2"/>
+            <path d="M6 21C6 17.134 8.686 14 12 14C15.314 14 18 17.134 18 21"
+                stroke="#B8974A" stroke-width="2" stroke-linecap="round"/>
+        </svg>
 
-    <input 
-        type="tel"
-        class="phone-input"
-        id="phoneInput"
-        placeholder="رقم الهاتف"
-        maxlength="8"
-        [(ngModel)]="phoneNumber"
-        (input)="onPhoneInput($event)"
-    >
+        <input 
+            type="tel"
+            class="phone-input"
+            id="phoneInput"
+            placeholder="رقم الهاتف"
+            maxlength="8"
+            [(ngModel)]="phoneNumber"
+            (input)="onPhoneInput($event)"
+        >
+    </div>
 </div>
-
-
         <div class="otp-boxes">
             <input type="text" class="otp-box" maxlength="1" #digitInput (input)="onDigitInput($event, 0)" (keydown)="onDigitKeydown($event, 0)" (paste)="onDigitPaste($event, 0)" (focus)="onDigitFocus($event)">
             <input type="text" class="otp-box" maxlength="1" #digitInput (input)="onDigitInput($event, 1)" (keydown)="onDigitKeydown($event, 1)" (paste)="onDigitPaste($event, 1)" (focus)="onDigitFocus($event)">
