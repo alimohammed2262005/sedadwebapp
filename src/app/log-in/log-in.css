@@ -90,12 +90,12 @@ body, :host {
     text-align: center;
     outline: none;
     background-color: #fff;
-    color: #28a745;
+    color: #fff;
     font-weight: bold;
     caret-color: transparent;
     -webkit-text-security: disc;
     text-security: disc;
-    font-family: text-security-disc;
+    text-shadow: 0 0 0 #28a745;
     transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 .otp-box:empty {
