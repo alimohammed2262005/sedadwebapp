@@ -51,11 +51,13 @@ body, :host {
 
 .input-wrapper {
     position: relative;
-    width: 320px;
     height: 48px;
     border: 1.5px solid #8f8e8e;
     border-radius: 12px;
     background: #fff;
+    display: flex;
+    align-items: center;
+    width: 360px;
 }
 
 .phone-input {
