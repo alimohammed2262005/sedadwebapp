@@ -47,15 +47,12 @@ body, :host {
     position: relative;
     width: 100%;
     margin-bottom: 22px;
-    display: flex;
-    align-items: center;
 }
 
 .phone-input {
     width: 100%;
     height: 48px;
-    padding-inline-start: 15px;
-    padding-inline-end: 45px;
+    padding: 0 52px 0 15px;
     border: 1.5px solid #8f8e8e;
     border-radius: 12px;
     font-size: 15px;
@@ -63,18 +60,15 @@ body, :host {
     outline: none;
     background: #fff;
     box-sizing: border-box;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
 }
 
 .input-icon {
     position: absolute;
-    inset-inline-end: 15px;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
     pointer-events: none;
-    z-index: 5;
 }
-
 .phone-input::placeholder {
     color: #a0a0a0;
 }
