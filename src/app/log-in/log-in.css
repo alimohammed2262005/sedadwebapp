@@ -52,7 +52,7 @@ body, :host {
 
 .phone-input {
     width: 100%;
-    padding: 10px 50px 10px 18px;
+    padding: 10px 45px 10px 15px;
     border: 1.5px solid #8f8e8e;
     border-radius: 12px;
     font-size: 15px;
@@ -60,18 +60,20 @@ body, :host {
     outline: none;
     background: #fff;
     color: #333;
-}
-
-.phone-input::placeholder {
-    color: #a0a0a0;
+    appearance: none;
+    -webkit-appearance: none;
+    box-sizing: border-box;
 }
 
 .input-icon {
     position: absolute;
-    right: 16px;
+    right: 15px;
     top: 50%;
     transform: translateY(-50%);
     pointer-events: none;
+}
+.phone-input::placeholder {
+    color: #a0a0a0;
 }
 
 .otp-boxes {
