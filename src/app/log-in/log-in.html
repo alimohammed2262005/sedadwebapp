@@ -6,7 +6,7 @@
     <div class="page-container">
         <div *ngIf="successMessage" class="message success">{{ successMessage }}</div>
         <div *ngIf="errorMessage" class="message error">{{ errorMessage }}</div>
-<div class="input-group">
+<div class="phone-center">
     <div class="input-wrapper">
         <svg class="input-icon" width="22" height="22" viewBox="0 0 24 24" fill="none"
             xmlns="http://www.w3.org/2000/svg">
@@ -18,14 +18,11 @@
         <input 
             type="tel"
             class="phone-input"
-            id="phoneInput"
             placeholder="رقم الهاتف"
-            maxlength="8"
-            [(ngModel)]="phoneNumber"
-            (input)="onPhoneInput($event)"
         >
     </div>
 </div>
+
         <div class="otp-boxes">
             <input type="text" class="otp-box" maxlength="1" #digitInput (input)="onDigitInput($event, 0)" (keydown)="onDigitKeydown($event, 0)" (paste)="onDigitPaste($event, 0)" (focus)="onDigitFocus($event)">
             <input type="text" class="otp-box" maxlength="1" #digitInput (input)="onDigitInput($event, 1)" (keydown)="onDigitKeydown($event, 1)" (paste)="onDigitPaste($event, 1)" (focus)="onDigitFocus($event)">
