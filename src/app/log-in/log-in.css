@@ -3,7 +3,6 @@
     padding: 0;
     box-sizing: border-box;
 }
-
 body, :host {
     min-height: 100vh;
     display: flex;
@@ -12,7 +11,6 @@ body, :host {
     background: linear-gradient(to bottom, #f9fbfe, #f0f4fc);
     font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-
 .page-wrapper {
     width: 100%;
     min-height: 100vh;
@@ -21,20 +19,17 @@ body, :host {
     align-items: center;
     justify-content: center;
 }
-
 .logo-container {
     width: 100%;
     display: flex;
     justify-content: center;
 }
-
 .logo {
     width: 100%;
     max-width: 320px;
     height: auto;
     transform: translateY(-60px) scale(1.15);
 }
-
 .page-container {
     width: 100%;
     max-width: 380px;
@@ -48,7 +43,6 @@ body, :host {
     justify-content: center;
     margin-bottom: 20px;
 }
-
 .input-wrapper {
     position: relative;
     height: 48px;
@@ -59,7 +53,6 @@ body, :host {
     align-items: center;
     width: 350px;
 }
-
 .phone-input {
     width: 100%;
     height: 100%;
@@ -71,7 +64,6 @@ body, :host {
     background: transparent;
     box-sizing: border-box;
 }
-
 .input-icon {
     position: absolute;
     right: 18px;
@@ -79,11 +71,9 @@ body, :host {
     transform: translateY(-50%);
     pointer-events: none;
 }
-
 .phone-input::placeholder {
     color: #a0a0a0;
 }
-
 .otp-boxes {
     display: flex;
     gap: 30px;
@@ -91,7 +81,6 @@ body, :host {
     justify-content: center;
     direction: ltr;
 }
-
 .otp-box {
     width: 48px;
     height: 70px;
@@ -101,29 +90,22 @@ body, :host {
     text-align: center;
     outline: none;
     background-color: #28a745;
-    color: #fff;
+    color: transparent;
     font-weight: bold;
-    caret-color: #fff;
-    -webkit-text-security: disc;
-    transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+    caret-color: transparent;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
 }
-
 .otp-box:empty {
     border-color: #8f8e8e;
     background-color: #fff;
-    color: #3b7330;
 }
-
 .otp-box:not(:empty) {
     border: 2px solid #28a745;
     background-color: #28a745;
-    color: #fff;
 }
-
 .otp-box:focus {
     border-color: #2e7d32;
 }
-
 .submit-btn {
     width: 100%;
     padding: 8px 0;
@@ -137,21 +119,16 @@ body, :host {
     text-align: center;
     transition: background-color 0.2s ease, transform 0.1s ease;
 }
-
 .submit-btn:hover {
     background-color: #23923d;
 }
-
 .submit-btn:active {
     transform: scale(0.98);
 }
-
 .submit-btn:disabled {
     opacity: 0.6;
     cursor: not-allowed;
 }
-
-
 .forgot-password {
     font-size: 15px;
     font-weight: 600;
@@ -160,7 +137,6 @@ body, :host {
     cursor: pointer;
     text-align: center;
 }
-
 .register-link {
     font-size: 15px;
     font-weight: 600;
@@ -168,49 +144,41 @@ body, :host {
     margin-top: 40px;
     text-align: center;
 }
-
 .link-text {
     color: #B8974A;
     font-weight: 700;
     cursor: pointer;
 }
-
 .message {
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
     font-weight: bold;
 }
-
 .success {
     color: #155724;
     background-color: #d4edda;
     border: 1px solid #c3e6cb;
 }
-
 .error {
     color: #721c24;
     background-color: #f8d7da;
     border: 1px solid #f5c6cb;
 }
-
 @media (max-width: 600px) {
     .logo {
         max-width: 260px;
         transform: translateY(-70px) scale(1.25);
     }
-
     .page-container {
         max-width: 340px;
         padding: 0 16px;
     }
-
     .otp-box {
         width: 50px;
         height: 74px;
         font-size: 32px;
     }
-
     .otp-boxes {
         gap: 26px;
     }
