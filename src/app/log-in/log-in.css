@@ -44,34 +44,42 @@ body, :host {
     align-items: center;
 }
 .input-group {
-    position: relative;
     width: 100%;
     margin-bottom: 22px;
 }
 
-.phone-input {
-    width: 100%;
+.input-wrapper {
+    position: relative;
     height: 48px;
-    padding: 0 52px 0 15px;
     border: 1.5px solid #8f8e8e;
     border-radius: 12px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+}
+
+.phone-input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    padding: 0 52px 0 15px;
     font-size: 15px;
     text-align: right;
-    outline: none;
-    background: #fff;
+    background: transparent;
     box-sizing: border-box;
 }
 
 .input-icon {
     position: absolute;
     right: 18px;
-    top: 50%;
-    transform: translateY(-50%);
     pointer-events: none;
 }
+
 .phone-input::placeholder {
     color: #a0a0a0;
 }
+
 
 .otp-boxes {
     display: flex;
