@@ -116,21 +116,31 @@ body, :host {
 
 .submit-btn {
     width: 100%;
-    padding: 12px 0;
-    background: #28a745;
-    color: #fff;
+    padding: 14px 0;
+    background-color: #28a745;
+    color: #ffffff;
     border: none;
-    border-radius: 10px;
-    font-size: 15px;
-    font-weight: 600;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 700;
     cursor: pointer;
-    margin-top: 4px;
+    text-align: center;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.submit-btn:hover {
+    background-color: #23923d;
+}
+
+.submit-btn:active {
+    transform: scale(0.98);
 }
 
 .submit-btn:disabled {
     opacity: 0.6;
     cursor: not-allowed;
 }
+
 
 .forgot-password {
     font-size: 15px;
