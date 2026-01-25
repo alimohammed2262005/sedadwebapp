@@ -1,0 +1,41 @@
+<div class="page-wrapper">
+    <div class="logo-container">
+        <img src="logo.png" alt="Sedad Bank Logo" class="logo">
+    </div>
+
+    <div class="page-container">
+        <div *ngIf="successMessage" class="message success">{{ successMessage }}</div>
+        <div *ngIf="errorMessage" class="message error">{{ errorMessage }}</div>
+        <div class="input-group">
+            <input 
+                type="tel" 
+                class="phone-input" 
+                id="phoneInput"
+                placeholder="رقم الهاتف"
+                maxlength="8"
+                [(ngModel)]="phoneNumber"
+                (input)="onPhoneInput($event)"
+            >
+            <svg class="input-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" dir="ltr">
+                <circle cx="12" cy="8" r="4" stroke="#B8974A" stroke-width="2"/>
+                <path d="M6 21C6 17.134 8.686 14 12 14C15.314 14 18 17.134 18 21" stroke="#B8974A" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+        </div>
+
+        <div class="otp-boxes">
+            <input type="text" class="otp-box" maxlength="1" #digitInput (input)="onDigitInput($event, 0)" (keydown)="onDigitKeydown($event, 0)" (paste)="onDigitPaste($event, 0)" (focus)="onDigitFocus($event)">
+            <input type="text" class="otp-box" maxlength="1" #digitInput (input)="onDigitInput($event, 1)" (keydown)="onDigitKeydown($event, 1)" (paste)="onDigitPaste($event, 1)" (focus)="onDigitFocus($event)">
+            <input type="text" class="otp-box" maxlength="1" #digitInput (input)="onDigitInput($event, 2)" (keydown)="onDigitKeydown($event, 2)" (paste)="onDigitPaste($event, 2)" (focus)="onDigitFocus($event)">
+            <input type="text" class="otp-box" maxlength="1" #digitInput (input)="onDigitInput($event, 3)" (keydown)="onDigitKeydown($event, 3)" (paste)="onDigitPaste($event, 3)" (focus)="onDigitFocus($event)">
+        </div>
+
+        <button class="submit-btn" (click)="onSubmit()" [disabled]="isLoading">
+            تسجيل الدخول
+        </button>
+
+        <p class="forgot-password" (click)="forgetpassword()">هل نسيت كلمة المرور؟</p>
+        <p class="register-link">
+            مستخدم جديد؟ <span class="link-text" (click)="register()">سجل الآن</span>
+        </p>
+    </div>
+</div>

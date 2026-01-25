@@ -1,0 +1,39 @@
+<body style="background-image: url('/body.png'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed;">
+<div class="otp-modal">
+  <button class="close-btn" (click)="goToLogin()">✕</button>
+
+  <div class="timer-wrapper">
+    <svg class="progress-ring" width="180" height="180">
+      <circle class="bg" cx="90" cy="90" r="65"></circle>
+      <circle class="progress" cx="90" cy="90" r="65"></circle>
+    </svg>
+    <div id="timer">{{ timerText }}</div>
+  </div>
+
+  <div class="otp-inputs">
+    <div class="otp-box-wrapper" *ngFor="let o of otp; let i = index">
+      <input 
+        #otpInput
+        type="text" 
+        maxlength="1" 
+        inputmode="numeric"
+        pattern="[0-9]"
+        [value]="otp[i]"
+        (input)="onInput($event, i)"
+        (keydown)="onKeyDown($event, i)"
+        (paste)="onPaste($event, i)"
+        (focus)="$event.target.select()">
+      <div class="otp-box" [class.filled]="isFilled(i)">
+        <span class="dot" [class.filled]="isFilled(i)"></span>
+      </div>
+    </div>
+  </div>
+
+  <button class="submit-btn" (click)="submit()" [disabled]="isLoading">
+     تسجيل الدخول
+  </button>
+
+  <div *ngIf="errorMessage" style="color: #ff6b6b; margin-top: 15px; font-size: 14px;">
+    {{ errorMessage }}
+  </div>
+</div>

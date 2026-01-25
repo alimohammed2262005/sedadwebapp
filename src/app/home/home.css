@@ -1,0 +1,15 @@
+.success-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; 
+  background-color: #f5f7fa; 
+}
+
+.success-container img {
+  max-width: 500px; 
+  width: 100%;
+  height: auto;
+  border-radius: 16px; 
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}

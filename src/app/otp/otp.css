@@ -1,0 +1,197 @@
+html, body {
+    font-family: 'Cairo', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+body {
+    background-image: url('/body.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.otp-modal {
+    background: #fff;
+    width: 350px;
+    padding: 35px 25px;
+    border-radius: 24px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #333;
+    font-weight: 300;
+    line-height: 1;
+    z-index: 10;
+    padding: 5px;
+}
+
+.close-btn:hover {
+    color: #000;
+}
+
+.timer-wrapper {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    margin: 20px auto 35px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#timer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 32px;
+    font-weight: 700;
+    color: #1a3a52;
+    letter-spacing: 1px;
+}
+
+.progress-ring {
+    display: block;
+    transform: rotate(-90deg);
+}
+
+.progress-ring circle {
+    fill: none;
+}
+
+.progress-ring .bg {
+    stroke: #d3d3d3;
+    stroke-width: 10;
+}
+
+.progress-ring .progress {
+    stroke: #d4af37;
+    stroke-width: 10;
+    stroke-dasharray: 408.41;
+    stroke-dashoffset: 408.41;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 1s linear, stroke 0.3s ease;
+}
+
+.otp-inputs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 35px;
+    direction: ltr;
+}
+
+.otp-box-wrapper {
+    position: relative;
+    width: 48px;
+    height: 60px;
+}
+
+.otp-box-wrapper input {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    font-size: 20px;
+    text-align: center;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.otp-box {
+    width: 100%;
+    height: 100%;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    transition: all 0.2s ease;
+}
+
+.otp-box.filled {
+    background: #f8f9fa;
+    border-color: #0a8f3c;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ddd;
+    transition: all 0.2s ease;
+    opacity: 0;
+}
+
+.dot.filled {
+    background: #0a8f3c;
+    transform: scale(1.1);
+opacity: 1;
+}
+
+.submit-btn {
+    width: 100%;
+    background: #0a8f3c;
+    color: #fff;
+    border: none;
+    padding: 15px;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 480px) {
+    .otp-modal {
+        width: 90%;
+        padding: 30px 20px;
+    }
+    
+    .otp-box-wrapper {
+        width: 42px;
+        height: 55px;
+    }
+    
+    .dot {
+        width: 11px;
+        height: 11px;
+    }
+    
+    .submit-btn {
+        font-size: 16px;
+        padding: 13px;
+    }
+
+    #timer {
+        font-size: 28px;
+    }
+}
