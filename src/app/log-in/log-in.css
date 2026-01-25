@@ -84,15 +84,18 @@ body, :host {
 .otp-box {
     width: 48px;
     height: 70px;
-    border: 2px solid #28a745;
+    border: 2px solid #8f8e8e;
     border-radius: 14px;
     font-size: 30px;
     text-align: center;
     outline: none;
-    background-color: #28a745;
-    color: transparent;
+    background-color: #fff;
+    color: #28a745;
     font-weight: bold;
     caret-color: transparent;
+    -webkit-text-security: disc;
+    text-security: disc;
+    font-family: text-security-disc;
     transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 .otp-box:empty {
@@ -101,7 +104,7 @@ body, :host {
 }
 .otp-box:not(:empty) {
     border: 2px solid #28a745;
-    background-color: #28a745;
+    background-color: #fff;
 }
 .otp-box:focus {
     border-color: #2e7d32;
