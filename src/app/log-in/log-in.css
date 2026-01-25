@@ -86,16 +86,14 @@ body, :host {
     height: 70px;
     border: 2px solid #8f8e8e;
     border-radius: 14px;
-    font-size: 30px;
+    font-size: 40px;
     text-align: center;
     outline: none;
     background-color: #fff;
-    color: #fff;
+    color: #28a745;
     font-weight: bold;
     caret-color: transparent;
-    -webkit-text-security: disc;
-    text-security: disc;
-    text-shadow: 0 0 0 #28a745;
+    letter-spacing: 0;
     transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 .otp-box:empty {
@@ -180,7 +178,7 @@ body, :host {
     .otp-box {
         width: 50px;
         height: 74px;
-        font-size: 32px;
+        font-size: 44px;
     }
     .otp-boxes {
         gap: 26px;
