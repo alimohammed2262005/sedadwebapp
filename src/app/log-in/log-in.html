@@ -5,7 +5,6 @@
     <div class="page-container">
         <div *ngIf="successMessage" class="message success">{{ successMessage }}</div>
         <div *ngIf="errorMessage" class="message error">{{ errorMessage }}</div>
-        
         <div class="phone-center">
             <div class="input-wrapper">
                 <svg class="input-icon" width="22" height="22" viewBox="0 0 24 24" fill="none"
@@ -24,7 +23,6 @@
                 >
             </div>
         </div>
-        
         <div class="otp-boxes">
             <input type="tel" 
                    inputmode="numeric"
@@ -35,7 +33,7 @@
                    (input)="onDigitInput($event, 0)" 
                    (keydown)="onDigitKeydown($event, 0)" 
                    (paste)="onDigitPaste($event, 0)" 
-                   (focus)="onDigitFocus($event, 0)">
+                   (focus)="onDigitFocus($event)">
             <input type="tel" 
                    inputmode="numeric"
                    pattern="[0-9]*"
@@ -45,7 +43,7 @@
                    (input)="onDigitInput($event, 1)" 
                    (keydown)="onDigitKeydown($event, 1)" 
                    (paste)="onDigitPaste($event, 1)" 
-                   (focus)="onDigitFocus($event, 1)">
+                   (focus)="onDigitFocus($event)">
             <input type="tel" 
                    inputmode="numeric"
                    pattern="[0-9]*"
@@ -55,7 +53,7 @@
                    (input)="onDigitInput($event, 2)" 
                    (keydown)="onDigitKeydown($event, 2)" 
                    (paste)="onDigitPaste($event, 2)" 
-                   (focus)="onDigitFocus($event, 2)">
+                   (focus)="onDigitFocus($event)">
             <input type="tel" 
                    inputmode="numeric"
                    pattern="[0-9]*"
@@ -65,11 +63,8 @@
                    (input)="onDigitInput($event, 3)" 
                    (keydown)="onDigitKeydown($event, 3)" 
                    (paste)="onDigitPaste($event, 3)" 
-                   (focus)="onDigitFocus($event, 3)">
+                   (focus)="onDigitFocus($event)">
         </div>
-
-
-        
         <button class="submit-btn" (click)="onSubmit()" [disabled]="isLoading">
             تسجيل الدخول
         </button>
