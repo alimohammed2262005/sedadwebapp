@@ -1,23 +1,33 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Adminservice } from '../adminservice';
 import { Userinfo } from '../Interfaces/userinfo';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-usersinfo',
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './usersinfo.html',
   styleUrls: ['./usersinfo.css'],
 })
-export class Usersinfo implements OnInit {
+export class Usersinfo implements OnInit, OnDestroy {
   users: Userinfo[] = [];
-  phone: string = '';
+  private intervalId: any;
 
-  constructor(private http: Adminservice, private route: ActivatedRoute) {}
+  constructor(private http: Adminservice) {}
 
   ngOnInit() {
-  this.GetAllUsers();
+    this.GetAllUsers();
+
+    this.intervalId = setInterval(() => {
+      this.GetAllUsers();
+    }, 1000);
+  }
+
+  ngOnDestroy() {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
   }
 
   GetAllUsers() {
@@ -25,7 +35,7 @@ export class Usersinfo implements OnInit {
       next: (res) => {
         this.users = res;
       },
-      error: (err) => {
+      error: () => {
         this.users = [];
       }
     });
