@@ -86,16 +86,17 @@ body, :host {
     height: 70px;
     border: 2px solid #8f8e8e;
     border-radius: 14px;
+    font-size: 30px;
     text-align: center;
     outline: none;
     background-color: #fff;
+    color: #28a745;
     font-weight: bold;
     caret-color: transparent;
-    position: relative;
+    -webkit-text-security: disc;
+    text-security: disc;
+    font-family: text-security-disc;
     transition: border-color 0.2s ease, background-color 0.2s ease;
-    font-size: 30px;
-    color: transparent;
-    text-shadow: 0 0 0 #28a745;
 }
 .otp-box:empty {
     border-color: #8f8e8e;
@@ -104,9 +105,6 @@ body, :host {
 .otp-box:not(:empty) {
     border: 2px solid #28a745;
     background-color: #fff;
-    -webkit-text-security: disc;
-    text-security: disc;
-    color: #28a745;
 }
 .otp-box:focus {
     border-color: #2e7d32;
