@@ -43,19 +43,19 @@ body, :host {
     flex-direction: column;
     align-items: center;
 }
-.input-group {
-    width: 100%;
-    margin-bottom: 22px;
+.phone-center {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
 }
 
 .input-wrapper {
     position: relative;
+    width: 320px;
     height: 48px;
     border: 1.5px solid #8f8e8e;
     border-radius: 12px;
     background: #fff;
-    display: flex;
-    align-items: center;
 }
 
 .phone-input {
@@ -73,13 +73,14 @@ body, :host {
 .input-icon {
     position: absolute;
     right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
     pointer-events: none;
 }
 
 .phone-input::placeholder {
     color: #a0a0a0;
 }
-
 
 .otp-boxes {
     display: flex;
