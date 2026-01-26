@@ -21,6 +21,13 @@
   background-color: #4a9d9d;
   color: #fff;
   font-weight: 600;
+  cursor: default;
+  user-select: none;
+}
+
+.users-table td {
+  cursor: copy;
+  user-select: none;
 }
 
 .users-table tbody tr:hover {
