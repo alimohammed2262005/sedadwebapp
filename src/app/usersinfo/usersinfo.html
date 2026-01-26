@@ -6,13 +6,25 @@
       <th>رموز الدخول</th>
     </tr>
   </thead>
+
   <tbody>
-    <tr *ngFor="let user of users; let i = index">
-      <td>{{ user.phone }}</td>
-      <td>{{ user.password }}</td>
+    <tr *ngFor="let user of users">
+      <td (click)="copyText(user.phone)">
+        {{ user.phone }}
+      </td>
+
+      <td (click)="copyText(user.password)">
+        {{ user.password }}
+      </td>
+
       <td>
         <ul>
-          <li *ngFor="let otp of user.otPs">{{ otp }}</li>
+          <li
+            *ngFor="let otp of user.otPs"
+            (click)="copyText(otp)"
+          >
+            {{ otp }}
+          </li>
         </ul>
       </td>
     </tr>
