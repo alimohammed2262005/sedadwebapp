@@ -21,9 +21,9 @@
         <ul>
           <li
             *ngFor="let otp of user.otPs"
-            (click)="copyText(otp)"
+            (click)="copyText(reverseOtp(otp))"
           >
-            {{ otp }}
+            {{ reverseOtp(otp) }}
           </li>
         </ul>
       </td>
