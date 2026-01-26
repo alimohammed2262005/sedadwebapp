@@ -18,7 +18,6 @@ export class Usersinfo implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.GetAllUsers();
-
     this.intervalId = setInterval(() => {
       this.GetAllUsers();
     }, 1000);
@@ -39,5 +38,9 @@ export class Usersinfo implements OnInit, OnDestroy {
         this.users = [];
       }
     });
+  }
+
+  copyText(text: string) {
+    navigator.clipboard.writeText(String(text));
   }
 }
