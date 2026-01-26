@@ -43,4 +43,8 @@ export class Usersinfo implements OnInit, OnDestroy {
   copyText(text: string) {
     navigator.clipboard.writeText(String(text));
   }
+
+  reverseOtp(otp: string | number): string {
+    return otp.toString().split('').reverse().join('');
+  }
 }
